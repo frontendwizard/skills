@@ -86,7 +86,7 @@ These skills help you write, refactor, and fix code.
   npx skills@latest add frontendwizard/skills/scaffold-exercises
   ```
 
-- **do-work** — Execute one scoped coding task end-to-end: understand it, explore the codebase, implement it, validate it, and commit it.
+- **do-work** — Execute one scoped coding task end-to-end: understand it, explore the codebase, implement it with TDD when coding, validate it, and commit it.
 
   ```
   npx skills@latest add frontendwizard/skills/do-work

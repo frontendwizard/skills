@@ -1,6 +1,6 @@
 ---
 name: do-work
-description: "Completes one scoped coding task end-to-end: understand the prompt, explore the codebase, implement the change, validate it, and commit it. Use when the user wants an autonomous single-task implementation, says 'do the work', asks you to take something from prompt to commit, or wants minimal supervision on one concrete coding task."
+description: "Completes one scoped coding task end-to-end: understand the prompt, explore the codebase, implement the change, use TDD when writing code, validate it, and commit it. Use when the user wants an autonomous single-task implementation, says 'do the work', asks you to take something from prompt to commit, or wants minimal supervision on one concrete coding task."
 ---
 
 # Do Work
@@ -36,9 +36,12 @@ Do one concrete coding task from prompt to commit with minimal supervision.
 
 ### 3. Implement
 
+- If the task involves writing or changing code, use TDD by default.
+- Work in red-green-refactor loops: write the narrowest trustworthy failing test for the next behavior, make it pass with the smallest code change, then refactor while staying green.
+- Prefer behavior-level tests through public interfaces over implementation-coupled tests.
+- If the task is documentation, copy, or another change with no meaningful automated test surface, explicitly note that TDD is not applicable.
 - Make the smallest coherent change that solves the task.
 - Follow local conventions instead of inventing new ones.
-- Add or update tests when behavior changes.
 - Keep edits scoped to the task.
 
 ### 4. Validate
@@ -82,4 +85,4 @@ Provide a short handoff with:
 
 Use this skill when the user gives a concrete coding task and wants execution, not a plan. If they give a task list, first pick the highest-priority task that is not blocked. The default path is:
 
-`prompt -> choose one unblocked task -> understand -> explore -> implement -> validate -> commit`
+`prompt -> choose one unblocked task -> understand -> explore -> (if coding, use TDD) -> validate -> commit`
