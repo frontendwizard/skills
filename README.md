@@ -2,6 +2,14 @@
 
 A collection of agent skills that extend capabilities across planning, development, and tooling.
 
+## Planning backends
+
+Portable planning skills in this repo are converging on a shared backend model with three supported backends: `github`, `backlog`, and `local`.
+
+This repo defaults to `backlog` as a private GitHub-issues replacement. Work tracking lives in the selected backend, while execution stays in pi sessions or your own scripts.
+
+See [PLANNING.md](PLANNING.md) for the source of truth, backend precedence rules, artifact model, and the recommended hidden `.backlog` symlink setup.
+
 ## Planning & Design
 
 These skills help you think through problems before writing code.
