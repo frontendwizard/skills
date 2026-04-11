@@ -78,6 +78,12 @@ These skills help you write, refactor, and fix code.
   npx skills@latest add mattpocock/skills/scaffold-exercises
   ```
 
+- **do-work** — Execute one scoped coding task end-to-end: understand it, explore the codebase, implement it, validate it, and commit it.
+
+  ```
+  npx skills@latest add mattpocock/skills/do-work
+  ```
+
 ## Tooling & Setup
 
 - **setup-pre-commit** — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
