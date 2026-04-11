@@ -1,11 +1,11 @@
 ---
 name: improve-codebase-architecture
-description: Explore a codebase to find opportunities for architectural improvement, focusing on making the codebase more testable by deepening shallow modules. Use when user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more AI-navigable.
+description: Explore a codebase to find opportunities for architectural improvement, focusing on making the codebase more testable by deepening shallow modules, then land the chosen refactor RFC in the project's planning backend. Use when user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more AI-navigable.
 ---
 
 # Improve Codebase Architecture
 
-Explore a codebase like an AI would, surface architectural friction, discover opportunities for improving testability, and propose module-deepening refactors as GitHub issue RFCs.
+Explore a codebase like an AI would, surface architectural friction, discover opportunities for improving testability, and propose module-deepening refactors as backend-aware RFCs or planning artifacts. Architectural refactors usually do not need a PRD.
 
 A **deep module** (John Ousterhout, "A Philosophy of Software Design") has a small interface hiding a large implementation. Deep modules are more testable, more AI-navigable, and let you test at the boundary instead of inside.
 
@@ -71,6 +71,22 @@ After comparing, give your own recommendation: which design you think is stronge
 
 ### 6. User picks an interface (or accepts recommendation)
 
-### 7. Create GitHub issue
+### 7. Resolve the backend and create the RFC artifact
 
-Create a refactor RFC as a GitHub issue using `gh issue create`. Use the template in [REFERENCE.md](REFERENCE.md). Do NOT ask the user to review before creating — just create it and share the URL.
+Use this precedence order:
+
+- explicit user instruction for the current run
+- local private override in `.pi/planning.local.json`
+- checked-in project default in `.pi/planning.json`
+
+If the repo has a shared planning conventions document, follow it as the source of truth for backend behavior (for this repo, that file is `PLANNING.md`).
+
+Supported backends are `github`, `backlog`, and `local`.
+
+Create the chosen refactor RFC using the template in [REFERENCE.md](REFERENCE.md):
+
+- `github`: create a GitHub issue using `gh issue create`
+- `backlog`: create an RFC document or task in the Backlog.md workspace, preferably under the hidden `.backlog` root when the project uses that setup
+- `local`: create a local Markdown RFC or plan, usually under `plans/`
+
+Do NOT ask the user to review before creating the artifact. State which backend you resolved and why, then share the final URL or file path.

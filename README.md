@@ -12,7 +12,7 @@ See [PLANNING.md](PLANNING.md) for the source of truth, backend precedence rules
 
 ## Planning & Design
 
-These skills help you think through problems before writing code.
+These skills help you think through problems before writing code. Portable planning skills follow the repo's backend model (`github`, `backlog`, `local`) unless they are explicitly marked as GitHub-specific.
 
 - **to-prd** — Create a feature PRD through an interactive interview, codebase exploration, and module design, then route it to the project's planning backend.
 
@@ -20,7 +20,13 @@ These skills help you think through problems before writing code.
   npx skills@latest add mattpocock/skills/to-prd
   ```
 
-- **to-issues** — Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.
+- **prd-to-plan** — Turn a feature PRD into backend-appropriate implementation artifacts using tracer-bullet vertical slices.
+
+  ```
+  npx skills@latest add mattpocock/skills/prd-to-plan
+  ```
+
+- **to-issues** — GitHub-only tracer-bullet breakdown for repos that want direct PRD -> issue fan-out.
 
   ```
   npx skills@latest add mattpocock/skills/to-issues
@@ -38,7 +44,7 @@ These skills help you think through problems before writing code.
   npx skills@latest add mattpocock/skills/design-an-interface
   ```
 
-- **request-refactor-plan** — Create a detailed refactor plan with tiny commits via user interview, then file it as a GitHub issue.
+- **request-refactor-plan** — Create a detailed backend-aware refactor plan with tiny commits via user interview. Refactors usually do not need a PRD.
 
   ```
   npx skills@latest add mattpocock/skills/request-refactor-plan
@@ -54,13 +60,13 @@ These skills help you write, refactor, and fix code.
   npx skills@latest add mattpocock/skills/tdd
   ```
 
-- **triage-issue** — Investigate a bug by exploring the codebase, identify the root cause, and file a GitHub issue with a TDD-based fix plan.
+- **triage-issue** — Investigate a bug by exploring the codebase, identify the root cause, and create a backend-aware bug-fix plan. Bug-fix planning does not require a PRD.
 
   ```
   npx skills@latest add mattpocock/skills/triage-issue
   ```
 
-- **improve-codebase-architecture** — Explore a codebase for architectural improvement opportunities, focusing on deepening shallow modules and improving testability.
+- **improve-codebase-architecture** — Explore a codebase for architectural improvement opportunities, focusing on deepening shallow modules and improving testability, then land the chosen refactor RFC in the planning backend.
 
   ```
   npx skills@latest add mattpocock/skills/improve-codebase-architecture
@@ -82,6 +88,16 @@ These skills help you write, refactor, and fix code.
 
   ```
   npx skills@latest add mattpocock/skills/do-work
+  ```
+
+## GitHub-Native Governance
+
+These workflows are intentionally GitHub-specific and are not routed through the portable planning backend model.
+
+- **github-triage** — Triage GitHub issues through a label-based state machine and prepare issues for human or agent execution.
+
+  ```
+  npx skills@latest add mattpocock/skills/github-triage
   ```
 
 ## Tooling & Setup

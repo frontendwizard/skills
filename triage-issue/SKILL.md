@@ -1,11 +1,11 @@
 ---
 name: triage-issue
-description: Triage a bug or issue by exploring the codebase to find root cause, then create a GitHub issue with a TDD-based fix plan. Use when user reports a bug, wants to file an issue, mentions "triage", or wants to investigate and plan a fix for a problem.
+description: Triage a bug or issue by exploring the codebase to find root cause, then create a backend-aware bug-fix plan artifact. Use when user reports a bug, wants to file a bug-fix task, mentions "triage", or wants to investigate and plan a fix for a problem.
 ---
 
 # Triage Issue
 
-Investigate a reported problem, find its root cause, and create a GitHub issue with a TDD fix plan. This is a mostly hands-off workflow - minimize questions to the user.
+Investigate a reported problem, find its root cause, and create a backend-appropriate bug-fix plan. Bug-fix planning does not require a PRD. This is a mostly hands-off workflow - minimize questions to the user.
 
 ## Process
 
@@ -54,11 +54,29 @@ Rules:
 - Include a final refactor step if needed
 - **Durability**: Only suggest fixes that would survive radical codebase changes. Describe behaviors and contracts, not internal structure. Tests assert on observable outcomes (API responses, UI state, user-visible effects), not internal state. A good suggestion reads like a spec; a bad one reads like a diff.
 
-### 5. Create the GitHub issue
+### 5. Resolve the backend
 
-Create a GitHub issue using `gh issue create` with the template below. Do NOT ask the user to review before creating - just create it and share the URL.
+Use this precedence order:
 
-<issue-template>
+- explicit user instruction for the current run
+- local private override in `.pi/planning.local.json`
+- checked-in project default in `.pi/planning.json`
+
+If the repo has a shared planning conventions document, follow it as the source of truth for backend behavior (for this repo, that file is `PLANNING.md`).
+
+Supported backends are `github`, `backlog`, and `local`.
+
+### 6. Create the backend-appropriate bug-fix artifact
+
+Use the template below for the artifact body. Do NOT ask the user to review before creating it.
+
+- `github`: create a GitHub issue using `gh issue create`
+- `backlog`: create a Backlog.md task in the configured backlog workspace, preferably under the hidden `.backlog` root when the project uses that setup
+- `local`: for a small single-slice bug fix, give the user a short local execution brief in the response and note that the eventual commit acts as the ticket. If the fix needs a durable multi-step plan, create a local Markdown plan in `plans/`.
+
+Before finalizing, state which backend you resolved and why.
+
+<bug-fix-template>
 
 ## Problem
 
@@ -97,6 +115,6 @@ A numbered list of RED-GREEN cycles:
 - [ ] All new tests pass
 - [ ] Existing tests still pass
 
-</issue-template>
+</bug-fix-template>
 
-After creating the issue, print the issue URL and a one-line summary of the root cause.
+After creating the artifact, print its URL or location and a one-line summary of the root cause.

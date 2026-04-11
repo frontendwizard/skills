@@ -1,7 +1,9 @@
 ---
 name: request-refactor-plan
-description: Create a detailed refactor plan with tiny commits via user interview, then file it as a GitHub issue. Use when user wants to plan a refactor, create a refactoring RFC, or break a refactor into safe incremental steps.
+description: Create a detailed backend-aware refactor plan with tiny commits via user interview, then land it in the project's planning backend. Use when user wants to plan a refactor, create a refactoring RFC, or break a refactor into safe incremental steps without forcing a PRD.
 ---
+
+Use this skill for refactors and other engineering changes. PRDs are usually unnecessary for this kind of work.
 
 This skill will be invoked when the user wants to create a refactor request. You should go through the steps below. You may skip steps if you don't consider them necessary.
 
@@ -19,7 +21,23 @@ This skill will be invoked when the user wants to create a refactor request. You
 
 7. Break the implementation into a plan of tiny commits. Remember Martin Fowler's advice to "make each refactoring step as small as possible, so that you can always see the program working."
 
-8. Create a GitHub issue with the refactor plan. Use the following template for the issue description:
+8. Resolve the output backend before creating the final artifact. Use this precedence order:
+
+- explicit user instruction for the current run
+- local private override in `.pi/planning.local.json`
+- checked-in project default in `.pi/planning.json`
+
+If the repo has a shared planning conventions document, follow it as the source of truth for backend behavior (for this repo, that file is `PLANNING.md`).
+
+Supported backends are `github`, `backlog`, and `local`.
+
+9. Land the refactor plan in the backend-appropriate shape. Use the following template for the artifact body:
+
+- `github`: create a GitHub issue or RFC with the refactor plan
+- `backlog`: create a refactor plan document or task in the Backlog.md workspace, preferably under the hidden `.backlog` root when the project uses that setup
+- `local`: create a local Markdown refactor plan, usually under `plans/`, for later execution. Commits act as the tickets.
+
+10. Before finalizing, state which backend you resolved and why.
 
 <refactor-plan-template>
 
