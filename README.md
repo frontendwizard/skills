@@ -10,6 +10,8 @@ This repo defaults to `backlog` as a private GitHub-issues replacement. Work tra
 
 See [PLANNING.md](PLANNING.md) for the source of truth, backend precedence rules, artifact model, and the recommended hidden `.backlog` symlink setup.
 
+For the repo-specific Backlog.md bootstrap steps and an end-to-end example of PRD -> plan -> Backlog.md tasks -> pi execution, see [BACKLOG.md](BACKLOG.md).
+
 ## Planning & Design
 
 These skills help you think through problems before writing code. Portable planning skills follow the repo's backend model (`github`, `backlog`, `local`) unless they are explicitly marked as GitHub-specific.

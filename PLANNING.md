@@ -77,6 +77,8 @@ rm -rf .backlog
 ln -s ~/backlogs/skills .backlog
 ```
 
+For the repo-specific bootstrap checklist and a concrete example of how this repo goes from PRD to plan to Backlog.md tasks, see `BACKLOG.md`.
+
 Why this is the recommended shape:
 
 - `.backlog` is easy for tools and skills to discover from the repo root
