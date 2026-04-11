@@ -10,7 +10,7 @@ This repo defaults to the `backlog` backend.
 - Optional local private override: `.pi/planning.local.json`
 - Recommended backlog root from the repo: `.backlog`
 
-The repo should use Backlog.md as a private GitHub-issues replacement. Execution still happens in pi sessions or your own scripts.
+The repo should use Backlog.md as a private GitHub issue replacement. Execution still happens in pi sessions or your own scripts.
 
 ## Supported backends
 

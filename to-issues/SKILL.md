@@ -1,17 +1,25 @@
 ---
 name: to-issues
-description: Break a plan, spec, or PRD into independently-grabbable GitHub issues using tracer-bullet vertical slices. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues.
+description: GitHub-specific PRD breakdown that turns a PRD into independently-grabbable GitHub issues using tracer-bullet vertical slices. Use when user wants direct PRD-to-issue fan-out in a GitHub-planned repo.
 ---
 
 # To Issues
 
-Break a plan into independently-grabbable GitHub issues using vertical slices (tracer bullets).
+This is the GitHub-specific sibling of `prd-to-plan`.
+
+Use it only when the project deliberately keeps feature planning in GitHub issues. If the repo uses the portable planning backend model (`github`, `backlog`, `local`), prefer `prd-to-plan` for backend-aware artifact generation.
+
+Break a PRD into independently-grabbable GitHub issues using vertical slices (tracer bullets).
 
 ## Process
 
 ### 1. Gather context
 
-Work from whatever is already in the conversation context. If the user passes a GitHub issue number or URL as an argument, fetch it with `gh issue view <number>` (with comments).
+Ask the user for the PRD GitHub issue number (or URL).
+
+If the PRD does not live in GitHub, stop and route the user to `prd-to-plan` instead.
+
+If the PRD is not already in your context window, fetch it with `gh issue view <number>` (with comments).
 
 ### 2. Explore the codebase (optional)
 
@@ -19,7 +27,7 @@ If you have not already explored the codebase, do so to understand the current s
 
 ### 3. Draft vertical slices
 
-Break the plan into **tracer bullet** issues. Each issue is a thin vertical slice that cuts through ALL integration layers end-to-end, NOT a horizontal slice of one layer.
+Break the PRD into **tracer bullet** issues. Each issue is a thin vertical slice that cuts through ALL integration layers end-to-end, NOT a horizontal slice of one layer.
 
 Slices may be 'HITL' or 'AFK'. HITL slices require human interaction, such as an architectural decision or a design review. AFK slices can be implemented and merged without human interaction. Prefer AFK over HITL where possible.
 
@@ -56,7 +64,7 @@ Create issues in dependency order (blockers first) so you can reference real iss
 <issue-template>
 ## Parent
 
-#<parent-issue-number> (if the source was a GitHub issue, otherwise omit this section)
+#<parent-issue-number>
 
 ## What to build
 
@@ -76,4 +84,4 @@ Or "None - can start immediately" if no blockers.
 
 </issue-template>
 
-Do NOT close or modify any parent issue.
+Do NOT close or modify the parent PRD issue.

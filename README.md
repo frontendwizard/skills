@@ -4,9 +4,9 @@ A collection of agent skills that extend capabilities across planning, developme
 
 ## Planning backends
 
-Portable planning skills in this repo are converging on a shared backend model with three supported backends: `github`, `backlog`, and `local`.
+Portable planning skills in this repo use a shared backend model with three supported backends: `github`, `backlog`, and `local`.
 
-This repo defaults to `backlog` as a private GitHub-issues replacement. Work tracking lives in the selected backend, while execution stays in pi sessions or your own scripts.
+This repo defaults to `backlog` as a private GitHub issue replacement. Work tracking lives in the selected backend, while execution stays in pi sessions or your own scripts.
 
 See [PLANNING.md](PLANNING.md) for the source of truth, backend precedence rules, artifact model, and the recommended hidden gitignored `.backlog` setup.
 
@@ -32,12 +32,6 @@ These skills help you think through problems before writing code. Portable plann
 
   ```
   npx skills@latest add frontendwizard/skills/prd-to-plan
-  ```
-
-- **to-issues** — GitHub-only tracer-bullet breakdown for repos that want direct PRD -> issue fan-out.
-
-  ```
-  npx skills@latest add frontendwizard/skills/to-issues
   ```
 
 - **grill-me** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
@@ -98,9 +92,21 @@ These skills help you write, refactor, and fix code.
   npx skills@latest add frontendwizard/skills/do-work
   ```
 
-## GitHub-Native Governance
+## GitHub-Native Workflows
 
-These workflows are intentionally GitHub-specific and are not routed through the portable planning backend model.
+These workflows are intentionally GitHub-specific. They do not resolve through the portable `github` / `backlog` / `local` planning backend model.
+
+- **to-issues** — GitHub-only tracer-bullet breakdown for repos that want direct PRD -> issue fan-out.
+
+  ```
+  npx skills@latest add frontendwizard/skills/to-issues
+  ```
+
+- **qa** — Interactive QA intake that files durable GitHub issues from user-reported problems. GitHub-specific.
+
+  ```
+  npx skills@latest add frontendwizard/skills/qa
+  ```
 
 - **github-triage** — Triage GitHub issues through a label-based state machine and prepare issues for human or agent execution.
 

@@ -78,7 +78,7 @@ For the per-project planning backends initiative, the durable artifacts should b
 | --- | --- | --- |
 | PRD | `.backlog/docs/prd-support-per-project-planning-backends.md` | Feature requirements stay in the private backlog workspace |
 | Parent plan | `plans/per-project-planning-backends-implementation-plan.md` | Shared multi-slice implementation breakdown |
-| Child tickets | `.backlog/tasks/pb-001 - Establish-planning-conventions-and-Backlog.md-first-repo-defaults.md` through `.backlog/tasks/pb-006 - Clean-up-naming-catalog-copy-and-stale-Taskplane-first-assumptions.md` | Executable slices tracked in Backlog.md |
+| Child tickets | `.backlog/tasks/pb-001 - ...` through `.backlog/tasks/pb-006 - Clean-up-naming-and-catalog-copy-for-planning-backends.md` | Executable slices tracked in Backlog.md |
 | Execution | pi session or custom loop | Actual implementation work happens outside the tracking backend |
 
 That means the plan becomes executable Backlog.md tasks without turning Backlog.md into the execution runtime.
@@ -95,7 +95,7 @@ For this initiative, a maintainer can think about the work like this:
    - `PB-003` make `prd-to-plan` backend-aware
    - `PB-004` align non-PRD planning flows
    - `PB-005` set up Backlog.md integration and examples for this repo
-   - `PB-006` clean up naming and stale Taskplane-first copy
+   - `PB-006` clean up naming and catalog copy for planning backends
 4. A pi session or custom script picks the highest-priority unblocked task
 5. `do-work` (or an equivalent prompt loop) implements exactly that one task and creates the commit
 6. The backlog task status is updated locally in `.backlog/`, while the code change is recorded in git

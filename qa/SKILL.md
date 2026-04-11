@@ -1,9 +1,11 @@
 ---
 name: qa
-description: Interactive QA session where user reports bugs or issues conversationally, and the agent files GitHub issues. Explores the codebase in the background for context and domain language. Use when user wants to report bugs, do QA, file issues conversationally, or mentions "QA session".
+description: GitHub-specific QA intake workflow where the user reports bugs conversationally and the agent files durable GitHub issues. Use when user wants to report bugs, do QA, file issues conversationally, or mentions "QA session".
 ---
 
 # QA Session
+
+This is a GitHub-native intake workflow. It files GitHub issues directly and does not route through the portable planning backend model.
 
 Run an interactive QA session. The user describes problems they're encountering. You clarify, explore the codebase for context, and file GitHub issues that are durable, user-focused, and use the project's domain language.
 
