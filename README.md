@@ -19,37 +19,43 @@ These skills help you think through problems before writing code. Portable plann
 - **to-prd** — Create a feature PRD through an interactive interview, codebase exploration, and module design, then route it to the project's planning backend.
 
   ```
-  npx skills@latest add mattpocock/skills/to-prd
+  npx skills@latest add frontendwizard/skills/to-prd
+  ```
+
+- **write-a-decision** — Create a durable ADR-style decision record and land it in the project's decision store, including Backlog.md decisions in backlog-first repos.
+
+  ```
+  npx skills@latest add frontendwizard/skills/write-a-decision
   ```
 
 - **prd-to-plan** — Turn a feature PRD into backend-appropriate implementation artifacts using tracer-bullet vertical slices.
 
   ```
-  npx skills@latest add mattpocock/skills/prd-to-plan
+  npx skills@latest add frontendwizard/skills/prd-to-plan
   ```
 
 - **to-issues** — GitHub-only tracer-bullet breakdown for repos that want direct PRD -> issue fan-out.
 
   ```
-  npx skills@latest add mattpocock/skills/to-issues
+  npx skills@latest add frontendwizard/skills/to-issues
   ```
 
 - **grill-me** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
 
   ```
-  npx skills@latest add mattpocock/skills/grill-me
+  npx skills@latest add frontendwizard/skills/grill-me
   ```
 
 - **design-an-interface** — Generate multiple radically different interface designs for a module using parallel sub-agents.
 
   ```
-  npx skills@latest add mattpocock/skills/design-an-interface
+  npx skills@latest add frontendwizard/skills/design-an-interface
   ```
 
 - **request-refactor-plan** — Create a detailed backend-aware refactor plan with tiny commits via user interview. Refactors usually do not need a PRD.
 
   ```
-  npx skills@latest add mattpocock/skills/request-refactor-plan
+  npx skills@latest add frontendwizard/skills/request-refactor-plan
   ```
 
 ## Development
@@ -59,37 +65,37 @@ These skills help you write, refactor, and fix code.
 - **tdd** — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
 
   ```
-  npx skills@latest add mattpocock/skills/tdd
+  npx skills@latest add frontendwizard/skills/tdd
   ```
 
 - **triage-issue** — Investigate a bug by exploring the codebase, identify the root cause, and create a backend-aware bug-fix plan. Bug-fix planning does not require a PRD.
 
   ```
-  npx skills@latest add mattpocock/skills/triage-issue
+  npx skills@latest add frontendwizard/skills/triage-issue
   ```
 
 - **improve-codebase-architecture** — Explore a codebase for architectural improvement opportunities, focusing on deepening shallow modules and improving testability, then land the chosen refactor RFC in the planning backend.
 
   ```
-  npx skills@latest add mattpocock/skills/improve-codebase-architecture
+  npx skills@latest add frontendwizard/skills/improve-codebase-architecture
   ```
 
 - **migrate-to-shoehorn** — Migrate test files from `as` type assertions to @total-typescript/shoehorn.
 
   ```
-  npx skills@latest add mattpocock/skills/migrate-to-shoehorn
+  npx skills@latest add frontendwizard/skills/migrate-to-shoehorn
   ```
 
 - **scaffold-exercises** — Create exercise directory structures with sections, problems, solutions, and explainers.
 
   ```
-  npx skills@latest add mattpocock/skills/scaffold-exercises
+  npx skills@latest add frontendwizard/skills/scaffold-exercises
   ```
 
 - **do-work** — Execute one scoped coding task end-to-end: understand it, explore the codebase, implement it, validate it, and commit it.
 
   ```
-  npx skills@latest add mattpocock/skills/do-work
+  npx skills@latest add frontendwizard/skills/do-work
   ```
 
 ## GitHub-Native Governance
@@ -99,7 +105,7 @@ These workflows are intentionally GitHub-specific and are not routed through the
 - **github-triage** — Triage GitHub issues through a label-based state machine and prepare issues for human or agent execution.
 
   ```
-  npx skills@latest add mattpocock/skills/github-triage
+  npx skills@latest add frontendwizard/skills/github-triage
   ```
 
 ## Tooling & Setup
@@ -107,13 +113,13 @@ These workflows are intentionally GitHub-specific and are not routed through the
 - **setup-pre-commit** — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
 
   ```
-  npx skills@latest add mattpocock/skills/setup-pre-commit
+  npx skills@latest add frontendwizard/skills/setup-pre-commit
   ```
 
 - **git-guardrails-claude-code** — Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
 
   ```
-  npx skills@latest add mattpocock/skills/git-guardrails-claude-code
+  npx skills@latest add frontendwizard/skills/git-guardrails-claude-code
   ```
 
 ## Writing & Knowledge
@@ -121,23 +127,23 @@ These workflows are intentionally GitHub-specific and are not routed through the
 - **write-a-skill** — Create new skills with proper structure, progressive disclosure, and bundled resources.
 
   ```
-  npx skills@latest add mattpocock/skills/write-a-skill
+  npx skills@latest add frontendwizard/skills/write-a-skill
   ```
 
 - **edit-article** — Edit and improve articles by restructuring sections, improving clarity, and tightening prose.
 
   ```
-  npx skills@latest add mattpocock/skills/edit-article
+  npx skills@latest add frontendwizard/skills/edit-article
   ```
 
 - **ubiquitous-language** — Extract a DDD-style ubiquitous language glossary from the current conversation.
 
   ```
-  npx skills@latest add mattpocock/skills/ubiquitous-language
+  npx skills@latest add frontendwizard/skills/ubiquitous-language
   ```
 
 - **obsidian-vault** — Search, create, and manage notes in an Obsidian vault with wikilinks and index notes.
 
   ```
-  npx skills@latest add mattpocock/skills/obsidian-vault
+  npx skills@latest add frontendwizard/skills/obsidian-vault
   ```
