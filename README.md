@@ -98,6 +98,16 @@ These skills help you write, refactor, and fix code.
   npx skills@latest add frontendwizard/skills/do-work
   ```
 
+### AFK `/do-work` loop
+
+Inside tmux, you can run the checked-in AFK loop to keep launching fresh `/do-work` sessions in a right-side worker pane:
+
+```bash
+do-work/scripts/afk-do-work-loop.sh [iterations]
+```
+
+The default iteration cap is `10`. The loop stops on Ctrl-C, when the worker reports `<promise>NO MORE TASKS</promise>`, when it reports `<promise>BLOCKED</promise>`, or when the iteration cap is reached.
+
 ## GitHub-Native Workflows
 
 These workflows are intentionally GitHub-specific. They do not resolve through the portable `github` / `backlog` / `local` planning backend model.

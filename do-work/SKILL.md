@@ -86,3 +86,5 @@ Provide a short handoff with:
 Use this skill when the user gives a concrete coding task and wants execution, not a plan. If they give a task list, first pick the highest-priority task that is not blocked. The default path is:
 
 `prompt -> choose one unblocked task -> understand -> explore -> (if coding, use TDD) -> validate -> commit`
+
+For unattended tmux execution in this repo, see `do-work/scripts/afk-do-work-loop.sh` and `do-work/afk-loop-prompt.md`.

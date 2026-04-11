@@ -113,3 +113,5 @@ A simple manual loop is enough:
 5. Mark the task done in Backlog.md
 
 A custom script can automate those same steps, but the important boundary stays the same: Backlog.md tracks the work; pi executes the work.
+
+For this repo, the checked-in tmux loop lives at `do-work/scripts/afk-do-work-loop.sh`. It reuses a right-side worker pane, generates a recent-commits attachment for each run, and keeps all task-picking and completion logic inside `/do-work`.
