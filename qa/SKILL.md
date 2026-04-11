@@ -1,13 +1,27 @@
 ---
 name: qa
-description: GitHub-specific QA intake workflow where the user reports bugs conversationally and the agent files durable GitHub issues. Use when user wants to report bugs, do QA, file issues conversationally, or mentions "QA session".
+description: Interactive QA intake workflow where the user reports bugs conversationally and the agent creates durable backend-appropriate bug artifacts for `github`, `backlog`, or `local` planning. Use when user wants to report bugs, do QA, file bug tasks conversationally, or mentions "QA session".
 ---
 
 # QA Session
 
-This is a GitHub-native intake workflow. It files GitHub issues directly and does not route through the portable planning backend model.
+Run an interactive QA session. The user describes problems they're encountering. You clarify just enough to make each report durable, explore the codebase in the background for context and domain language, resolve the planning backend, and create backend-appropriate bug artifacts.
 
-Run an interactive QA session. The user describes problems they're encountering. You clarify, explore the codebase for context, and file GitHub issues that are durable, user-focused, and use the project's domain language.
+Preserve the conversational QA workflow. Do not turn this into a fix-planning or implementation session unless the user asks for that separately.
+
+## Backend resolution
+
+Resolve the backend in this order before creating artifacts:
+
+- explicit user instruction for the current run
+- local private override in `.pi/planning.local.json`
+- checked-in project default in `.pi/planning.json`
+
+If the repo has a shared planning conventions document, follow it as the source of truth for backend behavior (for this repo, that file is `PLANNING.md`).
+
+Supported backends are `github`, `backlog`, and `local`.
+
+Before creating artifacts, state which backend you resolved and why.
 
 ## For each issue the user raises
 
@@ -25,11 +39,11 @@ Do NOT over-interview. If the description is clear enough to file, move on.
 
 While talking to the user, kick off an Agent (subagent_type=Explore) in the background to understand the relevant area. The goal is NOT to find a fix — it's to:
 
-- Learn the domain language used in that area (check UBIQUITOUS_LANGUAGE.md)
+- Learn the domain language used in that area (check `UBIQUITOUS_LANGUAGE.md` if it exists)
 - Understand what the feature is supposed to do
 - Identify the user-facing behavior boundary
 
-This context helps you write a better issue — but the issue itself should NOT reference specific files, line numbers, or internal implementation details.
+This context helps you write a better bug artifact — but the artifact itself should NOT reference specific files, line numbers, or internal implementation details.
 
 ### 3. Assess scope: single issue or breakdown?
 
@@ -37,7 +51,7 @@ Before filing, decide whether this is a **single issue** or needs to be **broken
 
 Break down when:
 
-- The fix spans multiple independent areas (e.g. "the form validation is wrong AND the success message is missing AND the redirect is broken")
+- The fix spans multiple independent areas (for example, "the form validation is wrong AND the success message is missing AND the redirect is broken")
 - There are clearly separable concerns that different people could work on in parallel
 - The user describes something that has multiple distinct failure modes or symptoms
 
@@ -46,17 +60,21 @@ Keep as a single issue when:
 - It's one behavior that's wrong in one place
 - The symptoms are all caused by the same root behavior
 
-### 4. File the GitHub issue(s)
+### 4. Create the backend-appropriate bug artifact(s)
 
-Create issues with `gh issue create`. Do NOT ask the user to review first — just file and share URLs.
+Create the artifact(s) without asking the user to review first.
 
-Issues must be **durable** — they should still make sense after major refactors. Write from the user's perspective.
+#### Backend-specific destinations
+
+- `github`: create GitHub issue(s) with `gh issue create`
+- `backlog`: create Backlog.md-native bug task(s) in the configured backlog workspace, preferably under the hidden `.backlog` root when the project uses that setup
+- `local`: create local Markdown bug-planning artifact(s) under `plans/` so the workflow does not require GitHub or Backlog.md. For a single issue, create one concise bug brief file such as `plans/bug-<slug>.md`. For a breakdown, keep it minimal by creating one parent Markdown breakdown file in `plans/` with one section per issue instead of noisy child ticket files.
 
 #### For a single issue
 
 Use this template:
 
-```
+```md
 ## What happened
 
 [Describe the actual behavior the user experienced, in plain language]
@@ -73,19 +91,19 @@ Use this template:
 
 ## Additional context
 
-[Any extra observations from the user or from codebase exploration that help frame the issue — e.g. "this only happens when using the Docker layer, not the filesystem layer" — use domain language but don't cite files]
+[Any extra observations from the user or from codebase exploration that help frame the issue — use domain language but don't cite files]
 ```
 
 #### For a breakdown (multiple issues)
 
-Create issues in dependency order (blockers first) so you can reference real issue numbers.
+Create the artifacts in dependency order (blockers first) so later artifacts can reference real issue numbers, task IDs, or local sections.
 
 Use this template for each sub-issue:
 
-```
-## Parent issue
+```md
+## Parent artifact
 
-#<parent-issue-number> (if you created a tracking issue) or "Reported during QA session"
+<GitHub issue / Backlog.md task / local plan reference, or "Reported during QA session">
 
 ## What's wrong
 
@@ -101,7 +119,7 @@ Use this template for each sub-issue:
 
 ## Blocked by
 
-- #<issue-number> (if this issue can't be fixed until another is resolved)
+- <artifact reference> (if this issue can't be fixed until another is resolved)
 
 Or "None — can start immediately" if no blockers.
 
@@ -114,18 +132,18 @@ When creating a breakdown:
 
 - **Prefer many thin issues over few thick ones** — each should be independently fixable and verifiable
 - **Mark blocking relationships honestly** — if issue B genuinely can't be tested until issue A is fixed, say so. If they're independent, mark both as "None — can start immediately"
-- **Create issues in dependency order** so you can reference real issue numbers in "Blocked by"
+- **Create artifacts in dependency order** so you can reference real artifact identifiers in `Blocked by`
 - **Maximize parallelism** — the goal is that multiple people (or agents) can grab different issues simultaneously
 
-#### Rules for all issue bodies
+#### Rules for all bug artifacts
 
 - **No file paths or line numbers** — these go stale
-- **Use the project's domain language** (check UBIQUITOUS_LANGUAGE.md if it exists)
-- **Describe behaviors, not code** — "the sync service fails to apply the patch" not "applyPatch() throws on line 42"
+- **Use the project's domain language** (check `UBIQUITOUS_LANGUAGE.md` if it exists)
+- **Describe behaviors, not code** — for example, "the sync service fails to apply the patch" not "applyPatch() throws on line 42"
 - **Reproduction steps are mandatory** — if you can't determine them, ask the user
-- **Keep it concise** — a developer should be able to read the issue in 30 seconds
+- **Keep it concise** — a developer should be able to read the artifact in about 30 seconds
 
-After filing, print all issue URLs (with blocking relationships summarized) and ask: "Next issue, or are we done?"
+After creating the artifact(s), print all resulting URLs and/or local paths, summarize any blocking relationships, and ask: "Next issue, or are we done?"
 
 ### 5. Continue the session
 

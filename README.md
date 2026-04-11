@@ -68,6 +68,12 @@ These skills help you write, refactor, and fix code.
   npx skills@latest add frontendwizard/skills/triage-issue
   ```
 
+- **qa** — Interactive QA intake that turns user-reported bugs into durable backend-appropriate bug artifacts for `github`, `backlog`, or `local` planning.
+
+  ```
+  npx skills@latest add frontendwizard/skills/qa
+  ```
+
 - **improve-codebase-architecture** — Explore a codebase for architectural improvement opportunities, focusing on deepening shallow modules and improving testability, then land the chosen refactor RFC in the planning backend.
 
   ```
@@ -100,12 +106,6 @@ These workflows are intentionally GitHub-specific. They do not resolve through t
 
   ```
   npx skills@latest add frontendwizard/skills/to-issues
-  ```
-
-- **qa** — Interactive QA intake that files durable GitHub issues from user-reported problems. GitHub-specific.
-
-  ```
-  npx skills@latest add frontendwizard/skills/qa
   ```
 
 - **github-triage** — Triage GitHub issues through a label-based state machine and prepare issues for human or agent execution.
