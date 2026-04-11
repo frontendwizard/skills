@@ -67,14 +67,12 @@ Execution is how work actually gets done: a human-in-the-loop pi session, the `d
 
 ## Recommended `.backlog` setup
 
-The supported local-first setup is a hidden repo path that points to an external directory.
+The supported local-first setup is a hidden repo path inside the repo root that stays gitignored.
 
 Example:
 
 ```bash
-mkdir -p ~/backlogs/skills
-rm -rf .backlog
-ln -s ~/backlogs/skills .backlog
+mkdir -p .backlog
 ```
 
 For the repo-specific bootstrap checklist and a concrete example of how this repo goes from PRD to plan to Backlog.md tasks, see `BACKLOG.md`.
@@ -82,8 +80,8 @@ For the repo-specific bootstrap checklist and a concrete example of how this rep
 Why this is the recommended shape:
 
 - `.backlog` is easy for tools and skills to discover from the repo root
-- the actual backlog data lives outside the repository history
-- `.backlog/` stays gitignored to avoid commit noise and accidental model context loading
+- `.backlog/` stays gitignored to avoid commit noise
+- setup stays simple and does not require symlink management
 
 ## Config examples
 

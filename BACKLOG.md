@@ -6,10 +6,10 @@ The supported local-first shape is:
 
 - `.backlog` at the repo root
 - `.backlog/` gitignored
-- `.backlog` pointing to an external Backlog.md workspace via symlink
+- `.backlog` as a normal local directory by default
 - execution happening in pi sessions or your own local loop, not inside Backlog.md itself
 
-That keeps task state private and out of normal repo history while still giving skills a stable repo-root path to discover.
+That keeps task state out of normal repo history while still giving skills a stable repo-root path to discover.
 
 ## What is committed vs private
 
@@ -30,36 +30,24 @@ These files are expected to stay out of commits:
 
 ## One-time setup
 
-1. Pick an external directory for the workspace.
-
-   Example:
+1. Create the local workspace at the repo root.
 
    ```bash
-   mkdir -p ~/backlogs/skills
+   mkdir -p .backlog/{tasks,docs,decisions,drafts,archive,completed,milestones}
    ```
 
-2. If `.backlog` already exists as a real directory and contains local data, move or copy that data into the external directory first.
-
-3. Replace `.backlog` with a symlink to the external directory.
+2. Verify it is ignored by git.
 
    ```bash
-   rm -rf .backlog
-   ln -s ~/backlogs/skills .backlog
-   ```
-
-4. Verify the shape.
-
-   ```bash
-   ls -ld .backlog
-   readlink .backlog
    git check-ignore -v .backlog
    ```
 
 Expected result:
 
-- `ls -ld .backlog` shows a symlink
-- `readlink .backlog` points outside the repo
+- `.backlog/` exists as a normal local directory
 - `git check-ignore -v .backlog` shows the `.gitignore` rule that keeps the workspace out of commits
+
+If someone wants stronger physical separation later, they can still replace `.backlog` with a symlink, but that is optional and not the default recommendation for this repo.
 
 ## Repo defaults
 

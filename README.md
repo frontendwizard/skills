@@ -8,7 +8,7 @@ Portable planning skills in this repo are converging on a shared backend model w
 
 This repo defaults to `backlog` as a private GitHub-issues replacement. Work tracking lives in the selected backend, while execution stays in pi sessions or your own scripts.
 
-See [PLANNING.md](PLANNING.md) for the source of truth, backend precedence rules, artifact model, and the recommended hidden `.backlog` symlink setup.
+See [PLANNING.md](PLANNING.md) for the source of truth, backend precedence rules, artifact model, and the recommended hidden gitignored `.backlog` setup.
 
 For the repo-specific Backlog.md bootstrap steps and an end-to-end example of PRD -> plan -> Backlog.md tasks -> pi execution, see [BACKLOG.md](BACKLOG.md).
 
