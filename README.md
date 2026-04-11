@@ -14,7 +14,7 @@ See [PLANNING.md](PLANNING.md) for the source of truth, backend precedence rules
 
 These skills help you think through problems before writing code.
 
-- **to-prd** — Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview — just synthesizes what you've already discussed.
+- **to-prd** — Create a feature PRD through an interactive interview, codebase exploration, and module design, then route it to the project's planning backend.
 
   ```
   npx skills@latest add mattpocock/skills/to-prd
