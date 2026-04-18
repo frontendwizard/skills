@@ -87,12 +87,12 @@ That means the plan becomes executable Backlog.md tasks without turning Backlog.
 
 For this initiative, a maintainer can think about the work like this:
 
-1. `write-a-prd` creates the feature PRD in `.backlog/docs/`
-2. `prd-to-plan` creates `plans/per-project-planning-backends-implementation-plan.md`
+1. `to-prd` creates the feature PRD in `.backlog/docs/`
+2. `to-plan` creates `plans/per-project-planning-backends-implementation-plan.md` as the committed local plan
 3. The plan turns into Backlog.md tasks such as:
    - `PB-001` establish shared planning conventions
-   - `PB-002` make `write-a-prd` backend-aware
-   - `PB-003` make `prd-to-plan` backend-aware
+   - `PB-002` make `to-prd` backend-aware
+   - `PB-003` introduce `to-plan` local Markdown planning
    - `PB-004` align non-PRD planning flows
    - `PB-005` set up Backlog.md integration and examples for this repo
    - `PB-006` clean up naming and catalog copy for planning backends

@@ -10,10 +10,10 @@ Durable decisions that apply across all phases:
 - **Selection precedence**: explicit user instruction for the current run overrides local private config, which overrides the checked-in project default.
 - **Concern split**: planning/work tracking and execution are separate concerns. Backends track work; pi sessions and custom scripts execute it.
 - **Artifact model**: PRDs are for feature work; plans break implementation down; tickets/tasks are executable units of work.
-- **Single vs multi-slice**: single-slice work can go straight to one ticket; multi-slice work needs a parent plan artifact plus child tickets/tasks in the selected backend.
+- **Single vs multi-slice**: single-slice work can go straight to one executable artifact; multi-slice work needs a parent plan artifact plus child tickets/tasks or slice files.
 - **Backlog.md mode**: Backlog.md is used as a GitHub issues replacement, not as an execution runtime.
 - **Backlog storage model**: the recommended repo integration is a gitignored hidden `.backlog` path used as a normal local directory by default. A symlink to an external directory remains optional for stronger isolation.
-- **Local mode**: multi-slice work creates a Markdown plan only; commits act as the tickets and no child ticket files are created.
+- **Local mode**: single-slice work can live in one Markdown plan file; multi-slice work uses a parent plan plus child slice files.
 - **GitHub-native boundary**: governance and maintainer workflows that are truly about GitHub stay GitHub-specific.
 - **Repo default**: this repo should dogfood the Backlog.md workflow, with the backlog itself kept outside the repo history.
 
@@ -46,18 +46,18 @@ Create the shared planning conventions that all portable planning skills can fol
 
 ### What to build
 
-Update the feature PRD flow so `write-a-prd` no longer assumes GitHub issues are always the destination. The skill should preserve PRDs as the artifact for feature requirements while routing the output to the configured backend shape for GitHub, Backlog.md, or local workflows.
+Update the feature PRD flow so `to-prd` no longer assumes GitHub issues are always the destination. The skill should preserve PRDs as the artifact for feature requirements while routing the output to the configured backend shape for GitHub, Backlog.md, or local workflows.
 
 ### Acceptance criteria
 
-- [ ] `write-a-prd` clearly states that PRDs are for feature work.
-- [ ] `write-a-prd` no longer assumes GitHub issues are the only valid output.
+- [ ] `to-prd` clearly states that PRDs are for feature work.
+- [ ] `to-prd` no longer assumes GitHub issues are the only valid output.
 - [ ] The skill explains how PRDs should land in GitHub, Backlog.md-first, and local workflows.
 - [ ] The resulting instructions do not force non-feature work through a PRD path.
 
 ---
 
-## Phase 3: Make PRD-to-plan produce backend-appropriate plans and tickets
+## Phase 3: Introduce `to-plan` local Markdown planning from PRDs
 
 **Task ID**: `PB-003`
 
@@ -65,14 +65,14 @@ Update the feature PRD flow so `write-a-prd` no longer assumes GitHub issues are
 
 ### What to build
 
-Update `prd-to-plan` so it can turn a PRD into the right implementation artifacts for each backend. Single-slice work should become a single ticket. Multi-slice work should create a parent plan in `plans/`, and in Backlog.md mode it should also create child Backlog.md tickets with the right parent/dependency-friendly structure.
+Introduce `to-plan` so it can turn a PRD into durable local Markdown planning artifacts. Single-slice work should become a single plan file. Multi-slice work should create a parent plan in `plans/` plus child slice files with clear dependency-friendly structure.
 
 ### Acceptance criteria
 
-- [ ] `prd-to-plan` defines different output behavior for single-slice and multi-slice work.
-- [ ] Multi-slice Backlog.md output creates a parent plan plus child Backlog.md tickets.
-- [ ] Local output keeps multi-slice work in a Markdown plan without noisy child ticket files.
-- [ ] The parent/child relationship between a plan and its tickets is described in a durable way.
+- [ ] `to-plan` defines different output behavior for single-slice and multi-slice work.
+- [ ] Multi-slice local output creates a parent plan plus child slice Markdown files.
+- [ ] Slice dependencies are represented clearly in Markdown without relying on GitHub issue links.
+- [ ] The parent/child relationship between the plan and slice files is described in a durable way.
 
 ---
 

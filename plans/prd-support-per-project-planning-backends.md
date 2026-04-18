@@ -81,8 +81,8 @@ Portable planning skills should emit the right artifacts for the selected backen
 16. As a Backlog.md user, I want the option for the hidden backlog path to point to an external directory, so that I can choose stronger physical separation when I need it.
 17. As a developer, I want the recommended Backlog.md setup to be gitignored, so that backlog artifacts never show up in commits unless I explicitly choose otherwise.
 18. As a developer, I want the skills repo to document how Backlog.md fits with a manual or scripted pi workflow, so that the tool does not appear to own execution.
-19. As a user of `write-a-prd`, I want PRD creation to stop assuming GitHub issues are always the destination, so that feature requirements can land in the backend that fits the project.
-20. As a user of `prd-to-plan`, I want the skill to produce backend-appropriate plan and ticket artifacts, so that one planning flow can work across GitHub, Backlog.md, and local workflows.
+19. As a user of `to-prd`, I want PRD creation to stop assuming GitHub issues are always the destination, so that feature requirements can land in the backend that fits the project.
+20. As a user of `to-plan`, I want the skill to produce durable local Markdown plan artifacts from a PRD, so that local planning can stay in repo files instead of GitHub issues.
 21. As a user of engineering-planning skills, I want refactor and maintenance planning to use the same backend model, so that non-feature work is not second-class.
 22. As a maintainer, I want the repo documentation to tell a consistent story about PRDs, plans, tickets, and execution, so that users can understand the model quickly.
 23. As a maintainer, I want backend selection rules to be explicit and testable, so that the behavior remains predictable as the skills evolve.
@@ -97,14 +97,14 @@ Portable planning skills should emit the right artifacts for the selected backen
 - Use Backlog.md as the primary local-first GitHub issue replacement.
 - In Backlog.md mode, recommend a hidden repo path such as `.backlog` that is gitignored and used as a normal local directory by default.
 - Keep support for an optional symlinked hidden backlog root when a user wants stronger physical separation while preserving repo-root discovery.
-- Preserve `write-a-prd` as the PRD entry point for feature work, but remove the assumption that its output must always be filed as a GitHub issue.
+- Preserve `to-prd` as the PRD entry point for feature work, but remove the assumption that its output must always be filed as a GitHub issue.
 - Keep PRDs scoped to feature work and user-story definition.
 - Allow refactors, bug fixes, and maintenance work to bypass PRDs and go directly to plan/ticket artifacts.
-- Keep `prd-to-plan` as the canonical bridge from a PRD to an implementation plan plus backend-appropriate tickets.
-- For single-slice work, create one executable ticket/task in the selected backend instead of forcing a parent plan artifact.
-- For multi-slice work, create a parent plan artifact plus child tickets/tasks in the selected backend.
+- Keep `to-plan` as the canonical bridge from a PRD to durable local Markdown plan artifacts.
+- For single-slice work, create one executable artifact in the selected workflow instead of forcing a parent plan artifact.
+- For multi-slice work, create a parent plan artifact plus child tickets/tasks or slice files as appropriate for the selected workflow.
 - In Backlog.md mode, use Backlog.md-native structures for ticket tracking and related planning material, rather than treating Backlog.md as an orchestration engine.
-- In local mode, keep the workflow intentionally minimal: a Markdown plan for multi-slice efforts, with commits acting as the tickets.
+- In local mode, keep the workflow file-based: a single Markdown plan for single-slice work, or a parent plan plus child slice files for multi-slice work.
 - Keep GitHub-native governance skills explicitly GitHub-specific rather than forcing them through the portable backend abstraction.
 - Update the repo narrative so it describes PRDs, plans, tickets, and execution as separate concerns.
 
@@ -116,7 +116,7 @@ Portable planning skills should emit the right artifacts for the selected backen
 - Test that planning skills no longer assume execution is owned by the tracking backend.
 - Test single-slice versus multi-slice artifact generation rules.
 - Test that Backlog.md mode produces outputs that align with Backlog.md-native task tracking rather than Taskplane-style execution artifacts.
-- Test that local mode does not generate noisy child ticket files.
+- Test that local mode produces durable Markdown planning artifacts with clear parent/child relationships.
 - Test that portable planning skills preserve consistent conceptual behavior across backends while emitting backend-appropriate artifacts.
 - Test or verify the recommended hidden `.backlog` setup well enough that maintainers can trust the documented local-first pattern, and note the optional symlinked variant for stronger separation.
 

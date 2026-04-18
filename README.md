@@ -28,10 +28,10 @@ These skills help you think through problems before writing code. Portable plann
   npx skills@latest add frontendwizard/skills/write-a-decision
   ```
 
-- **prd-to-plan** — Turn a feature PRD into backend-appropriate implementation artifacts using tracer-bullet vertical slices.
+- **to-plan** — Turn a feature PRD into independently-grabbable local Markdown plan files using tracer-bullet vertical slices.
 
   ```
-  npx skills@latest add frontendwizard/skills/prd-to-plan
+  npx skills@latest add frontendwizard/skills/to-plan
   ```
 
 - **grill-me** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.

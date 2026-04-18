@@ -5,9 +5,9 @@ description: GitHub-specific PRD breakdown that turns a PRD into independently-g
 
 # To Issues
 
-This is the GitHub-specific sibling of `prd-to-plan`.
+This is the GitHub-specific sibling of `to-plan`.
 
-Use it only when the project deliberately keeps feature planning in GitHub issues. If the repo uses the portable planning backend model (`github`, `backlog`, `local`), prefer `prd-to-plan` for backend-aware artifact generation.
+Use it when the project deliberately keeps feature planning in GitHub issues instead of local Markdown plan files.
 
 Break a PRD into independently-grabbable GitHub issues using vertical slices (tracer bullets).
 
@@ -17,7 +17,7 @@ Break a PRD into independently-grabbable GitHub issues using vertical slices (tr
 
 Ask the user for the PRD GitHub issue number (or URL).
 
-If the PRD does not live in GitHub, stop and route the user to `prd-to-plan` instead.
+If the PRD does not live in GitHub, stop and route the user to `to-plan` instead.
 
 If the PRD is not already in your context window, fetch it with `gh issue view <number>` (with comments).
 
