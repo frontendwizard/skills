@@ -71,22 +71,8 @@ After comparing, give your own recommendation: which design you think is stronge
 
 ### 6. User picks an interface (or accepts recommendation)
 
-### 7. Resolve the backend and create the RFC artifact
+### 7. Resolve the backend and file the RFC
 
-Use this precedence order:
+Load `task-backend/SKILL.md`, resolve the backend, state which it is and why. For a single-phase RFC call `create_task(title, body)` using the template in [REFERENCE.md](REFERENCE.md). For a multi-phase RFC call `create_epic` first, then `create_task(..., parent_epic=<id>)` per phase.
 
-- explicit user instruction for the current run
-- local private override in `.pi/planning.local.json`
-- checked-in project default in `.pi/planning.json`
-
-If the repo has a shared planning conventions document, follow it as the source of truth for backend behavior (for this repo, that file is `PLANNING.md`).
-
-Supported backends are `github`, `backlog`, and `local`.
-
-Create the chosen refactor RFC using the template in [REFERENCE.md](REFERENCE.md):
-
-- `github`: create a GitHub issue using `gh issue create`
-- `backlog`: create an RFC document or task in the Backlog.md workspace, preferably under the hidden `.backlog` root when the project uses that setup
-- `local`: create a local Markdown RFC or plan, usually under `plans/`
-
-Do NOT ask the user to review before creating the artifact. State which backend you resolved and why, then share the final URL or file path.
+Do NOT ask the user to review before filing. After filing, print the resolved backend and all created ids/URLs.

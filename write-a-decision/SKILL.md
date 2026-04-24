@@ -24,19 +24,13 @@ If the user only needs implementation planning, route them to a planning or tick
 
 3. Explore the repo and referenced artifacts enough to verify terminology, current conventions, and durable links.
 
-4. Resolve the output backend before writing the final artifact. Use this precedence order:
-- explicit user instruction for the current run
-- local private override in `.pi/planning.local.json`
-- checked-in project default in `.pi/planning.json`
-
-If the repo has shared planning conventions, follow them as the source of truth for backend behavior (for this repo, that file is `PLANNING.md`).
-
-Supported backends are `github`, `backlog`, and `local`.
+4. Load `task-backend/SKILL.md` to resolve the project backend, then file the decision in the backend-appropriate shape below. State which backend you resolved and why.
 
 5. Land the decision in the backend-appropriate shape:
-- `github`: create a GitHub-native decision artifact, usually an issue or ADR document, and link related issues or plans
-- `backlog`: treat Backlog.md decisions as the ADR-equivalent. Prefer `backlog decision create "<title>"` when the CLI is available, then complete the generated file in `.backlog/decisions/`
-- `local`: create a local Markdown decision record, usually under `decisions/` unless the repo already has a better established location
+- `github`: create a GitHub-native decision artifact (issue or ADR doc) and link related issues or plans
+- `backlog-md`: prefer `backlog decision create "<title>"`, then complete the generated file under `.backlog/decisions/`
+- `dex`: dex has no native decision concept — write a Markdown ADR under `decisions/` and link it from the relevant dex task's description
+- `local`: create a local Markdown decision record under `decisions/` unless the repo has a better established location
 
 6. Decide whether this is a new decision, an update, or a superseding decision. Prefer preserving history by creating a new record that references the old one instead of silently overwriting prior rationale.
 
@@ -66,4 +60,4 @@ If the Backlog.md CLI generates frontmatter and `Context / Decision / Consequenc
 
 8. Link the final decision to the relevant tasks, plans, PRDs, docs, issues, and earlier decisions using durable identifiers or paths.
 
-9. Before finalizing, state which backend you resolved and why.
+9. Before finalizing, state which backend you resolved and why, and print the decision URL or path.

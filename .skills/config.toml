@@ -1,0 +1,17 @@
+# Skills configuration for this repo.
+# See task-backend/SKILL.md for the schema and behavior.
+
+[tasks]
+backend = "backlog-md"  # "github" | "backlog-md" | "dex" | "local"
+
+[tasks.github]
+# repo = "owner/name"   # optional; gh auto-detects if empty
+
+[tasks.backlog-md]
+root = ".backlog"
+
+[tasks.dex]
+# dex auto-detects project; no keys required
+
+[tasks.local]
+plans_dir = "plans"

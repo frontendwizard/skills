@@ -1,86 +1,69 @@
 ---
 name: request-refactor-plan
-description: Create a detailed backend-aware refactor plan with tiny commits via user interview, then land it in the project's planning backend. Use when user wants to plan a refactor, create a refactoring RFC, or break a refactor into safe incremental steps without forcing a PRD.
+description: Create a detailed refactor plan with tiny commits via user interview, then file it through the project's configured task backend (epic + tasks, or a committed local plan). Use when a user wants to plan a refactor, create a refactoring RFC, or break a refactor into safe incremental steps without forcing a PRD.
 ---
 
-Use this skill for refactors and other engineering changes. PRDs are usually unnecessary for this kind of work.
+# Request Refactor Plan
 
-This skill will be invoked when the user wants to create a refactor request. You should go through the steps below. You may skip steps if you don't consider them necessary.
+Use for refactors and other engineering changes. PRDs are usually unnecessary for this kind of work.
 
-1. Ask the user for a long, detailed description of the problem they want to solve and any potential ideas for solutions.
+You may skip steps that are not needed.
 
-2. Explore the repo to verify their assertions and understand the current state of the codebase.
+## Process
 
-3. Ask whether they have considered other options, and present other options to them.
+1. Ask for a long, detailed description of the problem and any solution ideas.
 
-4. Interview the user about the implementation. Be extremely detailed and thorough.
+2. Explore the repo to verify assertions and understand current state.
 
-5. Hammer out the exact scope of the implementation. Work out what you plan to change and what you plan not to change.
+3. Ask whether they considered other options. Present alternatives.
 
-6. Look in the codebase to check for test coverage of this area of the codebase. If there is insufficient test coverage, ask the user what their plans for testing are.
+4. Interview the user about implementation. Be thorough.
 
-7. Break the implementation into a plan of tiny commits. Remember Martin Fowler's advice to "make each refactoring step as small as possible, so that you can always see the program working."
+5. Hammer out exact scope. What changes, what doesn't.
 
-8. Resolve the output backend before creating the final artifact. Use this precedence order:
+6. Check test coverage for the affected area. If insufficient, ask about testing plans.
 
-- explicit user instruction for the current run
-- local private override in `.pi/planning.local.json`
-- checked-in project default in `.pi/planning.json`
+7. Break the implementation into tiny commits. Follow Fowler: "make each refactoring step as small as possible, so that you can always see the program working."
 
-If the repo has a shared planning conventions document, follow it as the source of truth for backend behavior (for this repo, that file is `PLANNING.md`).
+8. Load `task-backend/SKILL.md` and resolve the backend. State which it is and why.
 
-Supported backends are `github`, `backlog`, and `local`.
+9. File the plan:
 
-9. Land the refactor plan in the backend-appropriate shape. Use the following template for the artifact body:
+- **Single-phase refactor** → `create_task(title, body)` using the template below as the body.
+- **Multi-phase refactor** → `create_epic(title, summary)` then `create_task(phase_title, phase_body, parent_epic=<id>)` for each phase. For a chunky phase, add `create_subtask` calls under that phase's task.
 
-- `github`: create a GitHub issue or RFC with the refactor plan
-- `backlog`: create a refactor plan document or task in the Backlog.md workspace, preferably under the hidden `.backlog` root when the project uses that setup
-- `local`: create a local Markdown refactor plan, usually under `plans/`, for later execution. Commits act as the tickets.
-
-10. Before finalizing, state which backend you resolved and why.
+10. Print resolved backend and all created ids/URLs.
 
 <refactor-plan-template>
 
 ## Problem Statement
 
-The problem that the developer is facing, from the developer's perspective.
+Problem from the developer's perspective.
 
 ## Solution
 
-The solution to the problem, from the developer's perspective.
+Solution from the developer's perspective.
 
 ## Commits
 
-A LONG, detailed implementation plan. Write the plan in plain English, breaking down the implementation into the tiniest commits possible. Each commit should leave the codebase in a working state.
+Long, detailed plan in plain English. Tiniest commits possible. Each leaves the codebase working.
 
 ## Decision Document
 
-A list of implementation decisions that were made. This can include:
+Modules to build/modify, interfaces, clarifications, architectural decisions, schema changes, API contracts, specific interactions.
 
-- The modules that will be built/modified
-- The interfaces of those modules that will be modified
-- Technical clarifications from the developer
-- Architectural decisions
-- Schema changes
-- API contracts
-- Specific interactions
-
-Do NOT include specific file paths or code snippets. They may end up being outdated very quickly.
+Do NOT include file paths or code snippets.
 
 ## Testing Decisions
 
-A list of testing decisions that were made. Include:
-
-- A description of what makes a good test (only test external behavior, not implementation details)
-- Which modules will be tested
-- Prior art for the tests (i.e. similar types of tests in the codebase)
+What makes a good test, which modules get tested, prior art.
 
 ## Out of Scope
 
-A description of the things that are out of scope for this refactor.
+What's out of scope.
 
 ## Further Notes (optional)
 
-Any further notes about the refactor.
+Anything else.
 
 </refactor-plan-template>

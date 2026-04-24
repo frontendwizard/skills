@@ -24,6 +24,7 @@ Do one concrete coding task from prompt to commit with minimal supervision.
 ### 1. Understand the task
 
 - If given a task list, identify the highest-priority unblocked task before doing anything else.
+- If no task list was given, load `task-backend/SKILL.md`, resolve the backend, and use the `list_open` verb to fetch candidates. Pick the highest-priority unblocked one.
 - Restate the chosen task in one sentence.
 - Identify the likely acceptance criteria.
 - Identify constraints from the prompt, repo conventions, and existing code.

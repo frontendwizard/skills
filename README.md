@@ -2,21 +2,34 @@
 
 A collection of agent skills that extend capabilities across planning, development, and tooling.
 
-## Planning backends
+## Task backend
 
-Portable planning skills in this repo use a shared backend model with three supported backends: `github`, `backlog`, and `local`.
+Skills that file tracked work (PRDs, plans, bug tasks, refactor RFCs, decisions) route through a single adapter skill: **[task-backend](task-backend/SKILL.md)**. It resolves the active backend from `.skills/config.toml` and exposes a uniform verb vocabulary (`create_epic`, `create_task`, `create_subtask`, `get`, `list_open`, `update`, `comment`).
 
-This repo defaults to `backlog` as a private GitHub issue replacement. Work tracking lives in the selected backend, while execution stays in pi sessions or your own scripts.
+Supported backends:
 
-See [PLANNING.md](PLANNING.md) for the source of truth, backend precedence rules, artifact model, and the recommended hidden gitignored `.backlog` setup.
+- `github` — GitHub Issues (via `gh`)
+- `backlog-md` — [MrLesk/Backlog.md](https://github.com/MrLesk/Backlog.md) local-first tracker
+- `dex` — [dex.rip](https://dex.rip)
+- `local` — Markdown files under `plans/`, no tracker
 
-For the repo-specific Backlog.md bootstrap steps and an end-to-end example of PRD -> plan -> Backlog.md tasks -> pi execution, see [BACKLOG.md](BACKLOG.md).
+Projects pick one per repo:
+
+```toml
+# .skills/config.toml
+[tasks]
+backend = "backlog-md"   # "github" | "backlog-md" | "dex" | "local"
+```
+
+See [task-backend/SKILL.md](task-backend/SKILL.md) for the full schema and per-backend recipes.
+
+This repo defaults to `backlog-md`. See [BACKLOG.md](BACKLOG.md) for the Backlog.md bootstrap and an end-to-end example.
 
 ## Planning & Design
 
-These skills help you think through problems before writing code. Portable planning skills follow the repo's backend model (`github`, `backlog`, `local`) unless they are explicitly marked as GitHub-specific.
+These skills help you think through problems before writing code. Planning skills that file tracked work route through the [task-backend](task-backend/SKILL.md) adapter so they work with any supported backend.
 
-- **to-prd** — Create a feature PRD through an interactive interview, codebase exploration, and module design, then route it to the project's planning backend.
+- **to-prd** — Create a feature PRD through an interactive interview, codebase exploration, and module design, then file it as an epic.
 
   ```
   npx skills@latest add frontendwizard/skills/to-prd
@@ -34,6 +47,12 @@ These skills help you think through problems before writing code. Portable plann
   npx skills@latest add frontendwizard/skills/to-plan
   ```
 
+- **to-tasks** — Break a PRD (already filed as an epic) into tracer-bullet child tasks via the project's configured task backend.
+
+  ```
+  npx skills@latest add frontendwizard/skills/to-tasks
+  ```
+
 - **grill-me** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
 
   ```
@@ -46,7 +65,7 @@ These skills help you think through problems before writing code. Portable plann
   npx skills@latest add frontendwizard/skills/design-an-interface
   ```
 
-- **request-refactor-plan** — Create a detailed backend-aware refactor plan with tiny commits via user interview. Refactors usually do not need a PRD.
+- **request-refactor-plan** — Break a refactor into tiny commits via user interview and file it as a task (or epic + phase tasks). Refactors usually do not need a PRD.
 
   ```
   npx skills@latest add frontendwizard/skills/request-refactor-plan
@@ -62,19 +81,19 @@ These skills help you write, refactor, and fix code.
   npx skills@latest add frontendwizard/skills/tdd
   ```
 
-- **triage-issue** — Investigate a bug by exploring the codebase, identify the root cause, and create a backend-aware bug-fix plan. Bug-fix planning does not require a PRD.
+- **triage-issue** — Investigate a bug by exploring the codebase, identify the root cause, and file a TDD-based bug-fix task. Bug-fix planning does not require a PRD.
 
   ```
   npx skills@latest add frontendwizard/skills/triage-issue
   ```
 
-- **qa** — Interactive QA intake that turns user-reported bugs into durable backend-appropriate bug artifacts for `github`, `backlog`, or `local` planning.
+- **qa** — Interactive QA intake that turns user-reported bugs into durable bug tasks through the project's configured task backend.
 
   ```
   npx skills@latest add frontendwizard/skills/qa
   ```
 
-- **improve-codebase-architecture** — Explore a codebase for architectural improvement opportunities, focusing on deepening shallow modules and improving testability, then land the chosen refactor RFC in the planning backend.
+- **improve-codebase-architecture** — Explore a codebase for architectural improvement opportunities, focusing on deepening shallow modules and improving testability, then file the chosen refactor RFC.
 
   ```
   npx skills@latest add frontendwizard/skills/improve-codebase-architecture
@@ -110,21 +129,21 @@ The default iteration cap is `10`. The loop stops on Ctrl-C, when the worker rep
 
 ## GitHub-Native Workflows
 
-These workflows are intentionally GitHub-specific. They do not resolve through the portable `github` / `backlog` / `local` planning backend model.
+These workflows are intentionally GitHub-specific and bypass the task-backend adapter.
 
-- **to-issues** — GitHub-only tracer-bullet breakdown for repos that want direct PRD -> issue fan-out.
-
-  ```
-  npx skills@latest add frontendwizard/skills/to-issues
-  ```
-
-- **github-triage** — Triage GitHub issues through a label-based state machine and prepare issues for human or agent execution.
+- **github-triage** — Triage GitHub issues through a label-based state machine and prepare issues for human or agent execution. GitHub-only.
 
   ```
   npx skills@latest add frontendwizard/skills/github-triage
   ```
 
 ## Tooling & Setup
+
+- **setup-project** — Bootstrap a target repo with the workflow skill bundle, pick and initialize a task backend, update `.gitignore`, and append an `AGENTS.md` stanza. Idempotent.
+
+  ```
+  npx skills@latest add frontendwizard/skills/setup-project
+  ```
 
 - **setup-pre-commit** — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
 
