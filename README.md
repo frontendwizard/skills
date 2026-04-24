@@ -87,7 +87,7 @@ This repo defaults to `backlog-md`. See [BACKLOG.md](BACKLOG.md) for the bootstr
 
 - **[setup-project](skills/setup-project/SKILL.md)** → `/skill:setup-project` — bootstrap a repo with this package.
 - **[setup-pre-commit](skills/setup-pre-commit/SKILL.md)** — Husky + lint-staged + Prettier + typecheck + tests.
-- **[git-guardrails-claude-code](skills/git-guardrails-claude-code/SKILL.md)** — Claude Code hooks to block dangerous git commands.
+- **[setup-git-guardrails](skills/setup-git-guardrails/SKILL.md)** → `/skill:setup-git-guardrails` — harness-agnostic pre-tool-call guardrail that blocks dangerous git commands (push, reset --hard, clean, branch -D, checkout ., restore .) across Claude Code, pi, and opencode from one shared pattern list.
 
 ### Writing & knowledge
 

@@ -20,7 +20,7 @@
 | `tdd` | Red-green-refactor loop. |
 | `do-work` | Execute one unblocked task end-to-end. |
 
-Optional additions depending on project type: `setup-pre-commit`, `git-guardrails-claude-code`, `scaffold-exercises`, `migrate-to-shoehorn`, `edit-article`, `obsidian-vault`, `ubiquitous-language`, `design-an-interface`, `github-triage`.
+Optional additions depending on project type: `setup-pre-commit`, `setup-git-guardrails`, `scaffold-exercises`, `migrate-to-shoehorn`, `edit-article`, `obsidian-vault`, `ubiquitous-language`, `design-an-interface`, `github-triage`.
 
 ## `.skills/config.toml` template
 

@@ -1,0 +1,15 @@
+# Dangerous git operations blocked by setup-git-guardrails.
+#
+# One extended regular expression (grep -E / JS RegExp) per line.
+# Blank lines and # comments are ignored.
+# Patterns match anywhere in the bash command string.
+
+git push
+git reset --hard
+git clean -fd
+git clean -f
+git branch -D
+git checkout \.
+git restore \.
+push --force
+reset --hard
