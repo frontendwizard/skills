@@ -2,7 +2,7 @@
 
 This repo dogfoods the `backlog-md` task backend.
 
-Backend selection lives in `.skills/config.toml`. See [task-backend/SKILL.md](task-backend/SKILL.md) for the schema, verb vocabulary, and per-backend recipes.
+Backend selection lives in `.skills/config.toml`. See [skills/task-backend/SKILL.md](skills/task-backend/SKILL.md) for the schema, verb vocabulary, and per-backend recipes.
 
 ## Local-first shape
 

@@ -1,6 +1,6 @@
 ---
 name: domain-model
-description: Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates documentation (CONTEXT.md, ADRs) inline as decisions crystallise. Use when user wants to stress-test a plan against their project's language and documented decisions.
+description: Grilling session for tasks in an existing codebase — challenges your plan against the project's domain model, sharpens terminology, and updates documentation (CONTEXT.md, ADRs) inline as decisions crystallise. Use when the user wants to stress-test a plan against their project's language and documented decisions. For non-code planning (talks, articles, proposals) use `grill-me` instead.
 disable-model-invocation: true
 ---
 
