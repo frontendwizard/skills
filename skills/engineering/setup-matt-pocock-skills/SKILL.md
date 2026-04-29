@@ -28,7 +28,7 @@ Look at the current repo to understand its starting state. Read whatever exists;
 - `.scratch/` — sign that a local-markdown issue tracker convention is already in use
 - `.backlog/` — sign that Backlog.md is already initialized
 - `backlog task list --plain` — if `backlog` is installed and `.backlog/` exists
-- `dex status`, `dex list --json`, or repo docs mentioning dex — sign dex may be the issue tracker. Do **not** default to dex just because the `dex` binary exists; prefer dex only if the repo already documents dex usage, dex has repo-local state, or the user says they use it.
+- `.dex/`, `.dex/config.toml`, existing `docs/agents/issue-tracker.md` mentioning dex, `dex status`, `dex list --json`, or repo docs mentioning dex — sign dex may be the issue tracker. Do **not** default to dex just because the `dex` binary exists; prefer dex only if the repo already documents dex usage, dex has repo-local state, or the user says they use it.
 
 Do not run destructive or initializing commands during exploration.
 
