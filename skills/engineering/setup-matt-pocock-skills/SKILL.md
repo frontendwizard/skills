@@ -1,6 +1,6 @@
 ---
 name: setup-matt-pocock-skills
-description: Sets up an `## Agent skills` block in AGENTS.md/CLAUDE.md and `docs/agents/` so the engineering skills know this repo's issue tracker (GitHub or local markdown), triage label vocabulary, and domain doc layout. Run before first use of `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out` — or if those skills appear to be missing context about the issue tracker, triage labels, or domain docs.
+description: Sets up an `## Agent skills` block in AGENTS.md/CLAUDE.md and `docs/agents/` so the engineering skills know this repo's issue tracker (GitHub, GitLab, Backlog.md, local markdown, or another issue tracker), triage label vocabulary, and domain doc layout. Run before first use of `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out` — or if those skills appear to be missing context about the issue tracker, triage labels, or domain docs.
 disable-model-invocation: true
 ---
 
@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Scaffold the per-repo configuration that the engineering skills assume:
 
-- **Issue tracker** — where issues live (GitHub by default; local markdown is also supported out of the box)
+- **Issue tracker** — where issues live (GitHub by default; GitLab, Backlog.md, and local markdown are also supported out of the box)
 - **Triage labels** — the strings used for the five canonical triage roles
 - **Domain docs** — where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
 
@@ -20,12 +20,16 @@ This is a prompt-driven skill, not a deterministic script. Explore, present what
 
 Look at the current repo to understand its starting state. Read whatever exists; don't assume:
 
-- `git remote -v` and `.git/config` — is this a GitHub repo? Which one?
+- `git remote -v` and `.git/config` — is this a GitHub or GitLab repo? Which one?
 - `AGENTS.md` and `CLAUDE.md` at the repo root — does either exist? Is there already an `## Agent skills` section in either?
 - `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root
 - `docs/adr/` and any `src/*/docs/adr/` directories
 - `docs/agents/` — does this skill's prior output already exist?
 - `.scratch/` — sign that a local-markdown issue tracker convention is already in use
+- `.backlog/` — sign that Backlog.md is already initialized
+- `backlog task list --plain` — if `backlog` is installed and `.backlog/` exists
+
+Do not run destructive or initializing commands during exploration.
 
 ### 2. Present findings and ask
 
@@ -41,12 +45,13 @@ Default posture: these skills were designed for GitHub. If a `git remote` points
 
 - **GitHub** — issues live in the repo's GitHub Issues (uses the `gh` CLI)
 - **GitLab** — issues live in the repo's GitLab Issues (uses the [`glab`](https://gitlab.com/gitlab-org/cli) CLI)
+- **Backlog.md** — issues live as Backlog.md tasks in this repo, managed with the `backlog` CLI
 - **Local markdown** — issues live as files under `.scratch/<feature>/` in this repo (good for solo projects or repos without a remote)
 - **Other** (Jira, Linear, etc.) — ask the user to describe the workflow in one paragraph; the skill will record it as freeform prose
 
 **Section B — Triage label vocabulary.**
 
-> Explainer: When the `triage` skill processes an incoming issue, it moves it through a state machine — needs evaluation, waiting on reporter, ready for an AFK agent to pick up, ready for a human, or won't fix. To do that, it needs to apply labels (or the equivalent in your issue tracker) that match strings *you've actually configured*. If your repo already uses different label names (e.g. `bug:triage` instead of `needs-triage`), map them here so the skill applies the right ones instead of creating duplicates.
+> Explainer: When the `triage` skill processes an incoming issue, it moves it through a state machine — needs evaluation, waiting on reporter, ready for an AFK agent to pick up, ready for a human, or won't fix. To do that, it needs to apply labels or equivalent issue-tracker metadata that match strings *you've actually configured*. If your repo already uses different label names (e.g. `bug:triage` instead of `needs-triage`), map them here so the skill applies the right ones instead of creating duplicates.
 
 The five canonical roles:
 
@@ -110,6 +115,7 @@ Then write the three docs files using the seed templates in this skill folder as
 
 - [issue-tracker-github.md](./issue-tracker-github.md) — GitHub issue tracker
 - [issue-tracker-gitlab.md](./issue-tracker-gitlab.md) — GitLab issue tracker
+- [issue-tracker-backlog-md.md](./issue-tracker-backlog-md.md) — Backlog.md issue tracker
 - [issue-tracker-local.md](./issue-tracker-local.md) — local-markdown issue tracker
 - [triage-labels.md](./triage-labels.md) — label mapping
 - [domain.md](./domain.md) — domain doc consumer rules + layout
