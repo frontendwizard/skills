@@ -1,4 +1,4 @@
 ---
-description: Grilling session for an existing codebase — stress-test a plan against the project's domain model, terminology, and ADRs
+description: Alias for grill-with-docs — stress-test a codebase plan against domain language and ADRs
 ---
-Load the `domain-model` skill and run it. Args: $@
+Load the `grill-with-docs` skill and run it. Args: $@

@@ -1,5 +1,5 @@
 ---
-description: Break a PRD epic into independently-grabbable tracer-bullet tasks via the task backend
-argument-hint: "[epic-id-or-url]"
+description: Break a plan, spec, or PRD into independently-grabbable tracer-bullet issues
+argument-hint: "[plan-spec-prd-or-issue]"
 ---
-Load the `to-tasks` skill and run it. Args: $@
+Load the `to-issues` skill and run it. Args: $@

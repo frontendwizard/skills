@@ -1,4 +1,4 @@
 ---
-description: Conversational QA intake — report bugs and have them filed as durable tasks through the task backend
+description: Conversational issue intake — report bugs and triage them through the project issue tracker
 ---
-Load the `qa` skill and run it. Args: $@
+Load the `triage` skill and run it. Args: $@
