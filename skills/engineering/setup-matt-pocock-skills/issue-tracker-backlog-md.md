@@ -4,7 +4,7 @@ Issues and PRDs for this repo live as Backlog.md tasks in the repo. Use the `bac
 
 ## Conventions
 
-- **Create an issue**: `backlog task create "$TITLE" --description "$BODY" --plain`. Use shell variables or heredocs for multi-line descriptions.
+- **Create an issue**: `backlog task create "$TITLE" --description "$BODY" --plain`. Use real newlines for multi-line descriptions; Backlog.md does not convert literal `\n`. For Bash/Zsh, prefer `--description $'Line1\nLine2'`; for POSIX sh, use `--description "$(printf 'Line1\nLine2')"`.
 - **Create a PRD**: Backlog.md does not need a separate PRD primitive. Create a task labelled `prd` and put the PRD body in the description: `backlog task create "$TITLE" --description "$BODY" --labels prd --plain`. If appropriate, add the triage label afterwards with `backlog task edit "$ID" --add-label "needs-triage" --plain`.
 - **Create child implementation issues**: use Backlog.md parent tasks for PRD-to-implementation breakdowns: `backlog task create "$TITLE" --description "$BODY" --parent "$PARENT_ID" --plain`.
 - **Represent blockers**: use dependencies when creating or editing a task: `backlog task create "$TITLE" --description "$BODY" --depends-on "$BLOCKER_IDS" --plain` or `backlog task edit "$ID" --depends-on "$BLOCKER_IDS" --plain`. `$BLOCKER_IDS` may be comma-separated or repeated according to the CLI help.
@@ -12,7 +12,7 @@ Issues and PRDs for this repo live as Backlog.md tasks in the repo. Use the `bac
 - **List issues**: `backlog task list --plain`, `backlog task list --status "To Do" --plain`, or `backlog task list --parent "$PARENT_ID" --plain`.
 - **Apply / remove triage labels**: `backlog task edit "$ID" --add-label "$LABEL" --plain` / `backlog task edit "$ID" --remove-label "$LABEL" --plain`.
 - **Add comments or triage notes**: Backlog.md has no GitHub-style comment stream. Append AI triage notes and agent briefs to implementation notes with `backlog task edit "$ID" --append-notes "$BODY" --plain`. The `triage` skill's AI disclaimer must still be included at the top of appended notes.
-- **Close an issue**: use the repo's completed status. Default: `backlog task edit "$ID" --status "Done" --plain`. If this repo uses a different done status, record it here during setup.
+- **Close an issue**: use the repo's completed status. Default: `backlog task edit "$ID" --status "Done" --plain`. If this repo uses a different done status, record it here during setup. Use `backlog task archive "$ID"` only if this repo treats archived tasks as closed/hidden rather than simply done.
 
 ## When a skill says "publish to the issue tracker"
 
